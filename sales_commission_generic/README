@@ -1,0 +1,76 @@
+14.0.0.1 ==>fixed issue of creating invoice from commission lines.
+
+14.0.0.2 ==>fixed issue of access rights when manager or user group is not selected for commission.
+         ==>hide sale commission tab when manager or user group is not selected for commission.
+
+Version 14.0.0.3 : (15-09-22)
+        - Update field ,report and action codes.
+
+14.0.0.4 ==>fixed issue of create invoice wizard was not showing.
+14.0.0.5 ==>fixed issue of invoice reversal entry.
+
+Version 14.0.0.6 : (01-02-2023)
+        - Update Code for the commission line and checked for the unlink code and update that.
+
+Versio- 14.0.0.7 : (27/03/2023)
+-- Improvement  
+        -- Added stage in commission line.
+        -- cancel commission if the sale order is cancel or return product.
+        -- cancel commission if the invoice is reset to draft or same for the invoice payment.
+
+Versio- 14.0.0.8 : (29/03/2023)
+        -- When we create downpayment it is not showing total in the downpayment invoice fixed that issue.
+
+Version- 14.0.0.9 : (28/04/2023)
+        - In sales and invoices apply discount-based commission that time gives a calculation issue with discount fixed this issue.
+        - In Mix Commission create a fixed-price based commission that time commission calculated on margin base not in subtotal fixed issue.
+        - Apply margin-based commission that time it did not calculate below margin commission fixed this issue.
+
+Version- 14.0.1.0 : (09/05/2023)
+        - For Invoice and Payment In Mix Commission create a fixed-price based commission that time commission calculated on margin base not in subtotal fixed issue.
+        - For Invoice and Payment Apply margin-based commission that time it did not calculate below margin commission fixed this issue.
+        - Create direct invoicing that time In discount-based commission it used only the "No Discount Commission" update code for invoices.
+
+Version- 14.0.1.1 : (15/05/2023)
+        - Improvement for Discount Based commission adds functionality for a discount greater than showing the input value and add validation.
+        - Improve code for Discount Based commission on sales, invoices, and payments.
+
+Version- 14.0.1.2 : (26/05/2023)
+        - Add condition when creating commission lines that time if based on payment that time create two lines fixed this issue.
+        - For multi-company used different company that time-based on sale orders not change the value for default company so used the active company in code.
+        - Improvement when the commission amount is applied "0" that time it shows in the commission line give condition commission is more then "0" then add commission line for Sales, Invoice, and Payment.
+
+Version- 14.0.1.3 : (01/06/2023)
+        - Commission Account is selected create bill from commission line that time it not added account as per added in setting fixed issue.
+        - Create invoice from commission line select record different sale person that time it getting issue with the bill it not creating a properly fixed issue and add validation for a different salesperson.
+        
+=> 14.0.1.4 : Improved an index as per latest improvements.
+
+Version- 14.0.1.5 : (16/06/2023)
+        - Customization is done change the string “Commission” word will be replaced with “Royalty” and the “Salesperson” word will be replaced with “Designer” Also change menu names.
+        - In the product add the designer and their royalty percentage.
+        - Commission add as per product designer and their percentage.
+        - All points are done based on the invoice. 
+        - Add a new report for Designer Royalties Report and pdf generate designer-wise.
+
+Version- 14.0.1.6 : (19/06/2023)
+        - Not able to create a new product when the sale commission setting is not enabled fixed issue.
+        - Sale commission lines are not visible on some variant products.
+        - Also check on the validation error as well for the royalty % fixed isuse.
+        
+Version- 14.0.1.7 : (21/06/2023)
+	- Change royalty commission field integer to float.
+
+Version- 14.0.1.8 : (07/07/2023)
+        - Add a new Customization point into Designer Royalties Report to show currency and currency-wise total.
+        - Remove some columns into the Royalties line in the tree view and the previous code for commission lines.
+        - Add currency symbol in the tree view of Royalties lines.
+        - Generate royalty report that time canceled invoices entries should not be visible in the report add this code.
+
+Version- 14.0.1.9 : (17/06/2024)
+        - Add a new field - partner_id
+
+Version- 14.0.1.10 : (18/06/2024)
+        - Add a new field - price
+        - Add a new field - commission_percentage
+        - Add a new field - total_qty
