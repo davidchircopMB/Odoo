@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<template id="sale_inv_des_template">
+			<t t-call="web.html_container">
+			<t t-call="web.external_layout">
+				<t t-if="not o and doc">
+					<t t-set="o" t-value="doc"/>
+				</t>
+				<t t-if="o and 'company_id' in o">
+					<t t-set="company" t-value="o.company_id"/>
+				</t>
+				<t t-if="not o or not 'company_id' in o">
+					<t t-set="company" t-value="res_company"/>
+				</t>
+				<div class="page">
+					<center>
+						<h4><b>Designer Royalties</b></h4>
+						<b><span t-esc="data['start_date']"/> to <span t-esc="data['end_date']"/></b><br/>
+						<b><span>Designer : </span><span t-esc="data['partner_des_id']"/></b><br/>
+						<br/>
+						<br/>
+						<div class="row">
+							<t t-set="total" t-value="0"/>
+							<table width='100%' style="border: 2px solid black;" class="table table-condensed">
+								<thead>
+									<tr style="border: 2px solid black;">
+										<th style="border: 2px solid black;">Date</th>
+										<th style="border: 2px solid black;">Invoice/Sale References</th>
+										<th style="border: 2px solid black;">Product</th>
+										<th style="border: 2px solid black;">Quantity</th>
+										<th style="border: 2px solid black;">Unit Price</th>
+										<th style="border: 2px solid black;">Royalty Percentage</th>
+										<th style="border: 2px solid black;">Royalty Total</th>
+										<th style="border: 2px solid black;">Customer</th>
+									</tr>
+								</thead>
+								<tr t-foreach="ids" t-as="commission">
+								<t t-set="total" t-value="total + commission.commission_amount"/>
+								<td style="border: 2px solid black;"><span t-field="commission.date"/></td>
+								<td style="border: 2px solid black;">
+									<t t-if="commission.order_id"><span t-field="commission.order_id"/></t>
+									<t t-if="commission.invoice_id"><span t-field="commission.invoice_id"/></t>
+								</td>
+								<td style="border: 2px solid black;"><span t-field="commission.product_id"/></td>
+								<td style="border: 2px solid black;"><span t-field="commission.quantity"/></td>
+								<td style="border: 2px solid black;">
+									<t t-if="commission.currency_id">
+										<span t-field="commission.invoice_line_id.price_unit" t-options='{"widget": "monetary", "display_currency": commission.currency_id}'/>
+									</t>
+									<t t-else="">
+										<span t-field="commission.invoice_line_id.price_unit"/>
+									</t>
+								</td>
+								<td style="border: 2px solid black;"><span t-field="commission.commission_id.exception_ids.commission_precentage"/></td>
+								<td style="border: 2px solid black;">
+									<t t-if="commission.currency_id">
+										<span t-field="commission.commission_amount" t-options='{"widget": "monetary", "display_currency": commission.currency_id}'/>
+									</t>
+									<t t-else="">
+										<span t-field="commission.commission_amount"/>
+									</t>
+								</td>
+								<td style="border: 2px solid black;"><span t-field="commission.partner_id"/></td>
+								
+								</tr>
+								<t t-foreach="total_result" t-as="r">
+									<tr style="border: none;">
+										<td style="border: none;"></td>
+										<td style="border: none;"></td>
+										<td style="border: none;"></td>
+										<td style="border: none;"></td>
+										<td style="border: none;"></td>
+										<t t-set="currency" t-value="user.env['res.currency'].browse(r['currency_id'])"/>
+										<td style="border: 2px solid black;"> 
+											<strong>Total in <span t-esc="currency.name"/>: </strong>
+										</td>
+										<td style="border: 2px solid black;">
+											<span t-esc="r['commission_amount']" t-options='{"widget": "monetary", "display_currency": currency}' />
+										</td>
+										<br/>
+									</tr>
+								</t>
+								
+							</table>
+						</div>
+					</center>
+				</div>
+				</t>
+			</t>
+		</template>
+
+	</data>
+</odoo>
