@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_order_form_inherit_bi" model="ir.ui.view">
+			<field name="name">view.order.form.inherit.bi</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//form/sheet/notebook/page" position="after">
+					<page string="Sales Commission" groups='sales_commission_generic.group_sales_commission_user,sales_commission_generic.group_sales_commission_manager'>
+						<field name="commission_ids" readonly="1">
+							<tree editable="bottom">
+							<field name="date"/>
+								<field name="name"/>
+								<field name="user_id"/>								
+								<field name="state" decoration-success="state == 'invoiced'" decoration-info="state == 'to_invoice'" widget="badge"/>
+								<field name="commission_amount" sum="Total Commission"/>
+							</tree>
+						</field>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="product_template_form_view_designer">
+			<field name="name">product.template.designer</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='sales']//group[@name='invoicing']" position="after">
+					<group string="Designers" groups='sales_commission_generic.group_sales_commission_user,sales_commission_generic.group_sales_commission_manager'>
+						<field name="designer_ids" nolabel="1">
+							<tree string="Designers" editable="bottom">
+								<field name="partner_des_id"/>
+								<field name="partner_commission"/>
+							</tree>
+						</field>
+					</group>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>
